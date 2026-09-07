@@ -172,6 +172,16 @@ AiPlayerbot.RandomBotGuildCount = 20
 # Maximum number of members in randombot guilds (minimum is hardcoded to 10)
 AiPlayerbot.RandomBotGuildSizeMax = 15
 
+# Disable creation of randombot guilds for the specified faction.
+# Defaults: both factions enabled
+AiPlayerbot.DisableAllianceGuilds = 0
+AiPlayerbot.DisableHordeGuilds = 0
+
+# Keep randombot guild generation balanced between Alliance and Horde.
+# When enabled, a new guild can only be created for the faction with fewer
+# randombot guilds. Defaults to 0 (disabled).
+AiPlayerbot.BalanceGuildGeneration = 0
+
 # Delete all randombot (and any addclass bot) guilds on startup. While enabled,
 # no new randombot guilds are created or joined. Set back to 0 and restart the
 # server to resume normal random bot guild assignment.

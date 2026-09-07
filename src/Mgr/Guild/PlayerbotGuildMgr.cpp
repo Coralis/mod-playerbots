@@ -25,6 +25,42 @@ void PlayerbotGuildMgr::Init()
 
 bool PlayerbotGuildMgr::CreateGuild(Player* player, std::string guildName)
 {
+    uint8_t playerFaction = player->GetTeamId();
+    if ((playerFaction == TEAM_ALLIANCE && sPlayerbotAIConfig.disableAllianceGuilds) ||
+        (playerFaction == TEAM_HORDE && sPlayerbotAIConfig.disableHordeGuilds))
+    {
+        LOG_DEBUG("playerbots", "Guild creation disabled for {} bot [{}]",
+            playerFaction == TEAM_ALLIANCE ? "Alliance" : "Horde", player->GetName());
+        return false;
+    }
+
+    if (sPlayerbotAIConfig.balanceGuildGeneration)
+    {
+        uint32 allianceGuildCount = 0;
+        uint32 hordeGuildCount = 0;
+        for (auto const& keyValue : _guildCache)
+        {
+            GuildCache const& cached = keyValue.second;
+            if (cached.hasRealPlayer)
+                continue;
+
+            if (cached.faction == TEAM_ALLIANCE)
+                ++allianceGuildCount;
+            else if (cached.faction == TEAM_HORDE)
+                ++hordeGuildCount;
+        }
+
+        uint32 factionGuildCount = playerFaction == TEAM_ALLIANCE ? allianceGuildCount : hordeGuildCount;
+        uint32 opposingGuildCount = playerFaction == TEAM_ALLIANCE ? hordeGuildCount : allianceGuildCount;
+        if (factionGuildCount > opposingGuildCount)
+        {
+            LOG_DEBUG("playerbots", "Balanced guild generation rejected {} guild [{}] ({} vs {})",
+                playerFaction == TEAM_ALLIANCE ? "Alliance" : "Horde", guildName,
+                factionGuildCount, opposingGuildCount);
+            return false;
+        }
+    }
+
     Guild* guild = new Guild();
     if (!guild->Create(player, guildName))
     {

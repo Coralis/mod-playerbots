@@ -45,6 +45,7 @@
 #include "MovementActions.h"
 #include "NewRpgAction.h"
 #include "NewRpgOutdoorPvP.h"
+#include "NewRpgDoGather.h"
 #include "NonCombatActions.h"
 #include "OutfitAction.h"
 #include "PetsAction.h"
@@ -279,6 +280,7 @@ public:
         creators["new rpg travel flight"] = &ActionContext::new_rpg_travel_flight;
         creators["new rpg outdoor pvp"] = &ActionContext::new_rpg_outdoor_pvp;
         creators["wait for attack keep safe distance"] = &ActionContext::wait_for_attack_keep_safe_distance;
+        creators["new rpg do gather"] = &ActionContext::new_rpg_do_gather;
     }
 
 private:
@@ -485,6 +487,7 @@ private:
     static Action* new_rpg_travel_flight(PlayerbotAI* ai) { return new NewRpgTravelFlightAction(ai); }
     static Action* new_rpg_outdoor_pvp(PlayerbotAI* ai) { return new NewRpgOutdoorPvpAction(ai); }
     static Action* wait_for_attack_keep_safe_distance(PlayerbotAI* ai) { return new WaitForAttackKeepSafeDistanceAction(ai); }
+    static Action* new_rpg_do_gather(PlayerbotAI* ai) { return new NewRpgDoGatherAction(ai); }
 };
 
 #endif

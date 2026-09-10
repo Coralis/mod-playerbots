@@ -286,6 +286,7 @@ void CheckMountStateAction::CompleteDismount(Player* bot)
     fallInfo.pos.Relocate(x, y, groundZ);
     bot->HandleFall(fallInfo);
     bot->RemoveUnitMovementFlag(MOVEMENTFLAG_FALLING | MOVEMENTFLAG_FALLING_FAR);
+    bot->SetFallInformation(0, groundZ);
 }
 
 bool CheckMountStateAction::TryForms(Player* master, int32 masterMountType, int32 masterSpeed) const

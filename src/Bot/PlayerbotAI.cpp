@@ -360,6 +360,12 @@ void PlayerbotAI::UpdateAI(uint32 elapsed, bool minimal)
         }
     }
 
+    if (!bot->HasUnitMovementFlag(MOVEMENTFLAG_FALLING | MOVEMENTFLAG_FALLING_FAR) &&
+        bot->movespline->Finalized())
+    {
+        bot->SetFallInformation(0, bot->GetPositionZ());
+    }
+
     if (spellInterruptRequested)
     {
         // At this point the preparing-cast branch above did not consume the request.

@@ -578,6 +578,9 @@ bool PlayerbotAIConfig::Initialize()
     deleteRandomBotAccounts = sConfigMgr->GetOption<bool>("AiPlayerbot.DeleteRandomBotAccounts", false);
     randomBotGuildCount = sConfigMgr->GetOption<int32>("AiPlayerbot.RandomBotGuildCount", 20);
     randomBotGuildSizeMax = sConfigMgr->GetOption<int32>("AiPlayerbot.RandomBotGuildSizeMax", 15);
+    disableAllianceGuilds = sConfigMgr->GetOption<bool>("AiPlayerbot.DisableAllianceGuilds", false);
+    disableHordeGuilds = sConfigMgr->GetOption<bool>("AiPlayerbot.DisableHordeGuilds", false);
+    balanceGuildGeneration = sConfigMgr->GetOption<bool>("AiPlayerbot.BalanceGuildGeneration", false);
     deleteRandomBotGuilds = sConfigMgr->GetOption<bool>("AiPlayerbot.DeleteRandomBotGuilds", false);
 
     botSendMailEnabled = sConfigMgr->GetOption<bool>("AiPlayerbot.BotSendMailEnabled", true);

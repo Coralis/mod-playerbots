@@ -297,6 +297,7 @@ public:
     std::string RandomBotAccountPrefix;
     uint32 RandomBotAccountCount;
     bool RandomBotRandomPassword;
+    bool DisableAllianceGuilds, DisableHordeGuilds, BalanceGuildGeneration;
     bool DeleteRandomBotAccounts;
     uint32 RandomBotGuildCount, RandomBotGuildSizeMax;
     bool DeleteRandomBotGuilds;
